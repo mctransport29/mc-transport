@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Réservation – MC Transport | Chauffeur VTC Île-de-France</title>
+  <meta name="google-site-verification" content="YcUabNlKMd2ZHp4IUw7IRB20zYyUeGdvdFFbU-AnAOE" />
+  <meta name="description" content="MC Transport - Réservez votre chauffeur professionnel en Île-de-France. Transport privé, aéroport, professionnel et événements. Simple, rapide et sécurisé." />
+  <meta name="keywords" content="MC Transport, chauffeur VTC, Île-de-France, transport privé, chauffeur professionnel, VTC 93, Seine-Saint-Denis" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black: #080808;
+      --dark: #111111;
+      --gold: #C9A84C;
+      --gold-light: #e8c97a;
+      --white: #f9f6f0;
+      --gray: #8a8680;
+      --border: rgba(201,168,76,0.2);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: 'DM Sans', sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 70% 40% at 50% 0%, rgba(201,168,76,0.1) 0%, transparent 70%),
+        radial-gradient(ellipse 30% 30% at 95% 95%, rgba(201,168,76,0.05) 0%, transparent 60%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── HEADER ── */
+    header {
+      position: sticky; top: 0;
+      z-index: 100;
+      background: rgba(8,8,8,0.92);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      padding: 1.2rem 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      color: var(--gold);
+      text-transform: uppercase;
+    }
+    .logo span { color: var(--white); font-weight: 400; }
+
+    nav a {
+      color: var(--gray);
+      text-decoration: none;
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-left: 2rem;
+      transition: color 0.2s;
+    }
+    nav a:hover, nav a.active { color: var(--gold); }
+
+    .nav-cta {
+      background: var(--gold);
+      color: var(--black) !important;
+      padding: 0.5rem 1.2rem;
+      border-radius: 6px;
+      font-weight: 600 !important;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative; z-index: 5;
+      text-align: center;
+      padding: 5rem 2rem 4rem;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      border: 1px solid var(--border);
+      padding: 0.45rem 1.3rem;
+      border-radius: 50px;
+      margin-bottom: 1.8rem;
+      animation: fadeUp 0.5s ease both;
+    }
+
+    h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.8rem, 7vw, 5rem);
+      font-weight: 600;
+      line-height: 1.05;
+      margin-bottom: 1.2rem;
+      animation: fadeUp 0.6s 0.1s ease both;
+    }
+    h1 em { font-style: italic; color: var(--gold); }
+
+    .hero-sub {
+      color: var(--gray);
+      font-size: 1.05rem;
+      font-weight: 300;
+      margin-bottom: 2.5rem;
+      animation: fadeUp 0.6s 0.2s ease both;
+    }
+
+    /* trust bar */
+    .trust-bar {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1rem 2.5rem;
+      animation: fadeUp 0.6s 0.3s ease both;
+    }
+
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.8rem;
+      color: var(--gray);
+    }
+    .trust-item .dot {
+      width: 5px; height: 5px;
+      background: var(--gold);
+      border-radius: 50%;
+    }
+
+    /* ── SERVICES ── */
+    .services-section {
+      position: relative; z-index: 5;
+      max-width: 1000px;
+      margin: 0 auto 4rem;
+      padding: 0 1.5rem;
+      animation: fadeUp 0.7s 0.3s ease both;
+    }
+
+    .section-label {
+      text-align: center;
+      font-size: 0.7rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 2rem;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+    }
+
+    .service-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.5rem 1rem;
+      text-align: center;
+      transition: all 0.25s;
+    }
+    .service-card:hover {
+      background: rgba(201,168,76,0.07);
+      border-color: rgba(201,168,76,0.5);
+      transform: translateY(-3px);
+    }
+    .service-card .sicon { font-size: 2rem; margin-bottom: 0.6rem; }
+    .service-card h3 {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 0.4rem;
+      letter-spacing: 0.02em;
+    }
+    .service-card p { font-size: 0.75rem; color: var(--gray); line-height: 1.5; }
+
+    /* ── FORM ── */
+    .form-wrapper {
+      position: relative; z-index: 5;
+      max-width: 820px;
+      margin: 0 auto 5rem;
+      padding: 0 1.5rem;
+      animation: fadeUp 0.8s 0.4s ease both;
+    }
+
+    .form-card {
+      background: rgba(255,255,255,0.025);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 3rem 3.5rem;
+      backdrop-filter: blur(16px);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .form-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 20%; right: 20%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+
+    .form-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem;
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+    }
+    .form-title em { color: var(--gold); font-style: italic; }
+    .form-desc { color: var(--gray); font-size: 0.88rem; margin-bottom: 2rem; }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.3rem;
+    }
+    .field-full { grid-column: 1 / -1; }
+
+    .field { display: flex; flex-direction: column; gap: 0.4rem; }
+
+    label {
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gray);
+      font-weight: 500;
+    }
+    label .req { color: var(--gold); }
+
+    .input-wrap { position: relative; }
+
+    .input-icon {
+      position: absolute;
+      left: 0.9rem;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 0.95rem;
+      pointer-events: none;
+      color: var(--gray);
+      transition: color 0.2s;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.09);
+      border-radius: 10px;
+      color: var(--white);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+      padding: 0.85rem 1rem 0.85rem 2.7rem;
+      transition: all 0.2s;
+      outline: none;
+      appearance: none;
+    }
+    textarea { padding: 0.85rem 1rem; resize: vertical; min-height: 90px; }
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--gold);
+      background: rgba(201,168,76,0.05);
+      box-shadow: 0 0 0 3px rgba(201,168,76,0.1);
+    }
+    .input-wrap:focus-within .input-icon { color: var(--gold); }
+    select option { background: #1a1a1a; }
+
+    /* trajet buttons */
+    .trajet-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.75rem;
+    }
+    .trajet-btn {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.09);
+      border-radius: 10px;
+      color: var(--gray);
+      padding: 0.9rem 0.5rem;
+      text-align: center;
+      cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 500;
+      transition: all 0.2s;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .trajet-btn .icon { font-size: 1.3rem; }
+    .trajet-btn:hover { border-color: var(--gold); color: var(--gold); }
+    .trajet-btn.selected {
+      border-color: var(--gold);
+      background: rgba(201,168,76,0.1);
+      color: var(--gold);
+    }
+
+    /* divider */
+    .form-divider {
+      grid-column: 1 / -1;
+      height: 1px;
+      background: var(--border);
+      margin: 0.3rem 0;
+    }
+
+    .form-section-title {
+      grid-column: 1 / -1;
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-top: 0.3rem;
+    }
+
+    /* submit */
+    .submit-row {
+      margin-top: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .privacy-note {
+      font-size: 0.75rem;
+      color: var(--gray);
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .btn-submit {
+      background: var(--gold);
+      color: var(--black);
+      border: none;
+      border-radius: 10px;
+      padding: 1rem 2.5rem;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      white-space: nowrap;
+    }
+    .btn-submit:hover {
+      background: var(--gold-light);
+      box-shadow: 0 8px 30px rgba(201,168,76,0.35);
+      transform: translateY(-2px);
+    }
+
+    /* info strip */
+    .info-strip {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1rem 2rem;
+      margin-top: 2rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+    }
+    .info-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.78rem;
+      color: var(--gray);
+    }
+    .info-item .dot { width: 5px; height: 5px; background: var(--gold); border-radius: 50%; }
+
+    /* ── COMMENT ÇA MARCHE ── */
+    .how-section {
+      position: relative; z-index: 5;
+      max-width: 900px;
+      margin: 0 auto 5rem;
+      padding: 0 1.5rem;
+      text-align: center;
+    }
+    .how-section h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.2rem;
+      margin-bottom: 0.5rem;
+    }
+    .how-section h2 em { color: var(--gold); font-style: italic; }
+    .how-section .sub { color: var(--gray); font-size: 0.9rem; margin-bottom: 2.5rem; }
+
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      position: relative;
+    }
+    .steps-grid::before {
+      content: '';
+      position: absolute;
+      top: 28px; left: 12.5%; right: 12.5%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border), var(--border), transparent);
+    }
+    .step-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.8rem;
+    }
+    .step-num {
+      width: 52px; height: 52px;
+      border-radius: 50%;
+      border: 1px solid var(--gold);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--gold);
+      background: var(--black);
+      position: relative; z-index: 2;
+    }
+    .step-item h4 { font-size: 0.85rem; font-weight: 600; }
+    .step-item p { font-size: 0.78rem; color: var(--gray); line-height: 1.5; }
+
+    /* ── LEGAL ── */
+    .legal-section {
+      position: relative; z-index: 5;
+      max-width: 820px;
+      margin: 0 auto 5rem;
+      padding: 0 1.5rem;
+    }
+    .legal-card {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2.5rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem 3rem;
+    }
+    .legal-card h3 {
+      grid-column: 1 / -1;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+    }
+    .legal-row {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+    .legal-row .lkey {
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gray);
+    }
+    .legal-row .lval {
+      font-size: 0.88rem;
+      color: var(--white);
+      font-weight: 500;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      position: relative; z-index: 5;
+      border-top: 1px solid var(--border);
+      padding: 2.5rem 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .footer-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 0.12em;
+    }
+    .footer-logo span { color: var(--gray); font-weight: 400; }
+    .footer-links { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+    .footer-links a {
+      color: var(--gray);
+      text-decoration: none;
+      font-size: 0.78rem;
+      letter-spacing: 0.06em;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--gold); }
+    .footer-copy { color: var(--gray); font-size: 0.75rem; }
+
+    /* ── SUCCESS ── */
+    .success-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(8,8,8,0.96);
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      text-align: center;
+      gap: 1rem;
+      z-index: 999;
+      padding: 2rem;
+    }
+    .success-overlay.show { display: flex; }
+    .success-icon {
+      width: 70px; height: 70px;
+      border-radius: 50%;
+      border: 2px solid var(--gold);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2rem;
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+      animation: scaleIn 0.4s ease;
+    }
+    .success-overlay h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.2rem;
+      color: var(--gold);
+    }
+    .success-overlay p { color: var(--gray); font-size: 0.92rem; max-width: 400px; line-height: 1.7; }
+    .success-close {
+      margin-top: 1rem;
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--gray);
+      padding: 0.7rem 2rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.85rem;
+      transition: all 0.2s;
+    }
+    .success-close:hover { border-color: var(--gold); color: var(--gold); }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes scaleIn {
+      from { transform: scale(0.5); opacity: 0; }
+      to   { transform: scale(1); opacity: 1; }
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 700px) {
+      header { padding: 1rem 1.2rem; }
+      nav { display: none; }
+      .form-card { padding: 2rem 1.3rem; }
+      .form-grid { grid-template-columns: 1fr; }
+      .trajet-grid { grid-template-columns: repeat(2,1fr); }
+      .services-grid { grid-template-columns: repeat(2,1fr); }
+      .steps-grid { grid-template-columns: repeat(2,1fr); }
+      .steps-grid::before { display: none; }
+      .legal-card { grid-template-columns: 1fr; }
+      .submit-row { flex-direction: column; align-items: stretch; }
+      .btn-submit { justify-content: center; }
+      footer { flex-direction: column; text-align: center; }
+      .footer-links { justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- SUCCESS -->
+<div class="success-overlay" id="successOverlay">
+  <div class="success-icon">✓</div>
+  <h2>Demande envoyée !</h2>
+  <p>Merci pour votre confiance. Notre équipe MC Transport va analyser votre demande et vous proposer un chauffeur disponible dans les plus brefs délais.</p>
+  <button class="success-close" onclick="document.getElementById('successOverlay').classList.remove('show')">Fermer</button>
+</div>
+
+<!-- HEADER -->
+<header>
+  <div class="logo">MC <span>Transport</span></div>
+  <nav>
+    <a href="https://mctransport.blog/">Accueil</a>
+    <a href="https://mctransport.blog/services/">Services</a>
+    <a href="https://mctransport.blog/36-2/">À propos</a>
+    <a href="#formulaire" class="nav-cta">Réserver</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="badge">✦ Chauffeur VTC — Île-de-France</div>
+  <h1>Réservez votre <em>chauffeur</em><br>professionnel</h1>
+  <p class="hero-sub">Simple, rapide et sécurisé — disponible 24h/24 en Île-de-France</p>
+  <div class="trust-bar">
+    <div class="trust-item"><div class="dot"></div> Chauffeurs professionnels & assurés</div>
+    <div class="trust-item"><div class="dot"></div> Réponse rapide garantie</div>
+    <div class="trust-item"><div class="dot"></div> Paris & toute l'Île-de-France</div>
+    <div class="trust-item"><div class="dot"></div> Particuliers & entreprises</div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services-section">
+  <p class="section-label">✦ Nos services</p>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="sicon">🚗</div>
+      <h3>Transport privé</h3>
+      <p>Déplacements quotidiens, rendez-vous, sorties personnelles</p>
+    </div>
+    <div class="service-card">
+      <div class="sicon">✈️</div>
+      <h3>Aéroports & Gares</h3>
+      <p>CDG, Orly, Roissy, Gare du Nord, Gare de Lyon…</p>
+    </div>
+    <div class="service-card">
+      <div class="sicon">💼</div>
+      <h3>Professionnel</h3>
+      <p>Réunions, séminaires, conférences — facturation entreprise</p>
+    </div>
+    <div class="service-card">
+      <div class="sicon">🎉</div>
+      <h3>Événements</h3>
+      <p>Mariages, soirées VIP, événements privés spéciaux</p>
+    </div>
+  </div>
+</section>
+
+<!-- FORMULAIRE -->
+<div class="form-wrapper" id="formulaire">
+  <div class="form-card">
+    <div class="form-title">Votre <em>réservation</em></div>
+    <p class="form-desc">Remplissez le formulaire — nous vous confirmons un chauffeur rapidement.</p>
+
+    <form id="reservationForm" onsubmit="handleSubmit(event)" novalidate>
+      <div class="form-grid">
+
+        <p class="form-section-title">✦ Vos informations</p>
+
+        <div class="field">
+          <label>Nom complet <span class="req">*</span></label>
+          <div class="input-wrap">
+            <span class="input-icon">👤</span>
+            <input type="text" placeholder="Jean Dupont" required/>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Téléphone / WhatsApp <span class="req">*</span></label>
+          <div class="input-wrap">
+            <span class="input-icon">📞</span>
+            <input type="tel" placeholder="+33 6 00 00 00 00" required/>
+          </div>
+        </div>
+
+        <div class="field field-full">
+          <label>Adresse email <span class="req">*</span></label>
+          <div class="input-wrap">
+            <span class="input-icon">✉️</span>
+            <input type="email" placeholder="exemple@email.com" required/>
+          </div>
+        </div>
+
+        <div class="form-divider"></div>
+        <p class="form-section-title">✦ Détails du trajet</p>
+
+        <div class="field">
+          <label>Date du trajet <span class="req">*</span></label>
+          <div class="input-wrap">
+            <span class="input-icon">📅</span>
+            <input type="date" required/>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Heure de prise en charge <span class="req">*</span></label>
+          <div class="input-wrap">
+            <span class="input-icon">🕐</span>
+            <input type="time" required/>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Lieu de départ <span class="req">*</span></label>
+          <div class="input-wrap">
+            <span class="input-icon">📍</span>
+            <input type="text" placeholder="Adresse complète de départ" required/>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Lieu d'arrivée <span class="req">*</span></label>
+          <div class="input-wrap">
+            <span class="input-icon">🏁</span>
+            <input type="text" placeholder="Adresse complète d'arrivée" required/>
+          </div>
+        </div>
+
+        <div class="field field-full">
+          <label>Type de trajet <span class="req">*</span></label>
+          <div class="trajet-grid">
+            <button type="button" class="trajet-btn selected" onclick="selectTrajet(this)">
+              <span class="icon">🚗</span> Privé
+            </button>
+            <button type="button" class="trajet-btn" onclick="selectTrajet(this)">
+              <span class="icon">✈️</span> Aéroport
+            </button>
+            <button type="button" class="trajet-btn" onclick="selectTrajet(this)">
+              <span class="icon">💼</span> Professionnel
+            </button>
+            <button type="button" class="trajet-btn" onclick="selectTrajet(this)">
+              <span class="icon">🎉</span> Événement
+            </button>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Nombre de passagers</label>
+          <div class="input-wrap">
+            <span class="input-icon">👥</span>
+            <select>
+              <option>1 passager</option>
+              <option>2 passagers</option>
+              <option>3 passagers</option>
+              <option>4 passagers</option>
+              <option>5 passagers</option>
+              <option>6+ passagers</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Bagages</label>
+          <div class="input-wrap">
+            <span class="input-icon">🧳</span>
+            <select>
+              <option>Aucun bagage</option>
+              <option>1 bagage cabine</option>
+              <option>1–2 valises</option>
+              <option>3+ valises</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field field-full">
+          <label>Instructions particulières</label>
+          <textarea placeholder="Ex : numéro de vol, adresse précise, siège bébé, heure d'atterrissage…"></textarea>
+        </div>
+
+      </div>
+
+      <div class="submit-row">
+        <p class="privacy-note">🔒 Données confidentielles & protégées</p>
+        <button type="submit" class="btn-submit">
+          Confirmer la demande →
+        </button>
+      </div>
+    </form>
+
+    <div class="info-strip">
+      <div class="info-item"><div class="dot"></div> Réponse rapide</div>
+      <div class="info-item"><div class="dot"></div> Chauffeurs professionnels & assurés</div>
+      <div class="info-item"><div class="dot"></div> Paiement à bord</div>
+      <div class="info-item"><div class="dot"></div> Annulation gratuite 2h avant</div>
+    </div>
+  </div>
+</div>
+
+<!-- COMMENT ÇA MARCHE -->
+<section class="how-section">
+  <p class="section-label">✦ Processus</p>
+  <h2>Comment ça <em>marche</em> ?</h2>
+  <p class="sub">En 4 étapes simples, votre chauffeur est confirmé</p>
+  <div class="steps-grid">
+    <div class="step-item">
+      <div class="step-num">1</div>
+      <h4>Demande en ligne</h4>
+      <p>Remplissez le formulaire de réservation ci-dessus</p>
+    </div>
+    <div class="step-item">
+      <div class="step-num">2</div>
+      <h4>Analyse du besoin</h4>
+      <p>MC Transport examine votre demande rapidement</p>
+    </div>
+    <div class="step-item">
+      <div class="step-num">3</div>
+      <h4>Chauffeur proposé</h4>
+      <p>Un professionnel disponible vous est attribué</p>
+    </div>
+    <div class="step-item">
+      <div class="step-num">4</div>
+      <h4>Trajet réalisé</h4>
+      <p>Votre déplacement dans les meilleures conditions</p>
+    </div>
+  </div>
+</section>
+
+<!-- INFOS LÉGALES -->
+<section class="legal-section">
+  <div class="legal-card">
+    <h3>Informations légales</h3>
+    <div class="legal-row">
+      <span class="lkey">Nom commercial</span>
+      <span class="lval">MC Transport</span>
+    </div>
+    <div class="legal-row">
+      <span class="lkey">Forme juridique</span>
+      <span class="lval">Entrepreneur individuel</span>
+    </div>
+    <div class="legal-row">
+      <span class="lkey">Numéro SIREN</span>
+      <span class="lval">100 608 207</span>
+    </div>
+    <div class="legal-row">
+      <span class="lkey">Numéro SIRET</span>
+      <span class="lval">100 608 207 00013</span>
+    </div>
+    <div class="legal-row">
+      <span class="lkey">Code APE</span>
+      <span class="lval">63.12Z</span>
+    </div>
+    <div class="legal-row">
+      <span class="lkey">Immatriculation RNE</span>
+      <span class="lval">02 février 2026</span>
+    </div>
+    <div class="legal-row">
+      <span class="lkey">Département</span>
+      <span class="lval">93 – Seine-Saint-Denis</span>
+    </div>
+    <div class="legal-row">
+      <span class="lkey">Zone d'intervention</span>
+      <span class="lval">Île-de-France</span>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">MC <span>Transport</span></div>
+  <div class="footer-links">
+    <a href="https://mctransport.blog/">Accueil</a>
+    <a href="https://mctransport.blog/services/">Services</a>
+    <a href="https://mctransport.blog/36-2/">À propos</a>
+    <a href="#">Politique de confidentialité</a>
+    <a href="#">Conditions générales</a>
+  </div>
+  <p class="footer-copy">© 2026 MC Transport — Seine-Saint-Denis (93)</p>
+</footer>
+
+<script>
+  function selectTrajet(btn) {
+    document.querySelectorAll('.trajet-btn').forEach(b => b.classList.remove('selected'));
+    btn.classList.add('selected');
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    document.getElementById('successOverlay').classList.add('show');
+  }
+
+  // Set min date to today
+  const dateInput = document.querySelector('input[type="date"]');
+  if (dateInput) {
+    const today = new Date().toISOString().split('T')[0];
+    dateInput.min = today;
+    dateInput.value = today;
+  }
+</script>
+</body>
+</html>
